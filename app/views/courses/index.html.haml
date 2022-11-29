@@ -1,0 +1,33 @@
+%p{:style => "color: green"}= notice
+.container
+ %h1 
+  Courses:
+  = @courses.count
+
+ %Table
+  %head
+   %tr
+    %th Title
+    %th Description
+    %th User
+    %th
+    %th
+
+  %body
+   - @courses.each do |course|
+    %tr
+     %td= course.title
+     %td= course.description
+     %td= course.user
+     %td= link_to "Show", course
+     %td= link_to "Edit", edit_course_path(course)
+     %td= link_to "Destroy", course, method: :delete, data: { confirm: "Are you sure?" }
+
+ %br
+
+ = link_to "New Course", new_course_path
+
+  
+ = link_to  courses_path, class: "btn btn-success" do
+  .fa.fa-book.fa-lg.fa-fade
+  Course
