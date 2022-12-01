@@ -1,6 +1,8 @@
-.container
-  %h1 Editing course
-  = render "form", course: @course
+.card
+  .card-header
+    %h1 Editing course
+  .card-body
+    = render "form", course: @course
   %br/
   %div
     = link_to "Show this course", @course

@@ -1,18 +1,67 @@
-%h1 This is the Home Page
-= link_to "Privacy Policy", home_privacy_policy_path
-%button.btn.btn-primary{:type => "button"} Primary
-%button.btn.btn-secondary{:type => "button"} Secondary
-%button.btn.btn-success{:type => "button"} Success
-%button.btn.btn-danger{:type => "button"} Danger
-%button.btn.btn-warning{:type => "button"} Warning
-%button.btn.btn-info{:type => "button"} Info
-%button.btn.btn-light{:type => "button"} Light
-%button.btn.btn-dark{:type => "button"} Dark
-%i.far.fa-address-book
-%i.fab.fa-github
-%i.fa-brands.fa-facebook.fa-4x.fa-spin
+.jumbotron
+  .display-4
+    What do you want to learn today?
 
+  .p-4
+  .form-inline.my-2.my-lg-0
+    = form_tag(courses_path, method: :get) do
+      .input-group
+        = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+        %span.input-group-append
+          %button.btn.btn-primary.btn-sm{:type => "submit"}
+            %span.fa.fa-search{"aria-hidden" => "true"}
 
-= link_to courses_path, class: 'btn btn-success' do
-  .fa.fa-book
-  Course
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-graduation-cap
+    = Course.count
+    online courses
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .fa.fa-chalkboard-teacher
+      /.fa.fa-brain
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .fa.fa-user-graduate
+    = User.count
+    active learners
+    .row
+    Join the knowledge sharing community
+  .card.card-body
+    %h1
+      .fa.fa-infinity
+    Lifetime access
+    .row
+    Learn on your schedule
+
+%hr
+%h2
+  Popular courses
+ 
+
+.card-columns
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+
+%hr
+%h2 
+  Top rated courses
+.card-columns
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+
+%hr
+%h2 
+  Latest courses
+.card-columns
+  - @latest_couses.each do |course|
+    = render 'courses/course', course: course
+
+%hr

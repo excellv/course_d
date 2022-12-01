@@ -1,6 +1,8 @@
-.container
-  %h1 New course
-  = render "form", course: @course
+.card
+  .card-header
+    %h1 New course
+  .card_body
+    = render "form", course: @course
   %br/
   %div
-    = link_to "Back to courses", courses_path
+    = link_to "Back to courses", courses_path, class:"btn btn-sm btn-warning"

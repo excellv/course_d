@@ -80,4 +80,4 @@ end
   gem "html2haml"
   gem "faker"
   gem "devise"
-  
+  gem "bootstrap", "~> 5.2.3"
